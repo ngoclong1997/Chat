@@ -21,13 +21,14 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         mappingView();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isFirstLogin){
+                if (true){
                     Intent intent = new Intent(Login.this, GetInfo.class);
                     startActivity(intent);
                 }else{
