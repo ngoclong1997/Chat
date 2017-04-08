@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_group_chat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.androidproj.chat.CreateGroupChat"
+    android:background="@color/softblue">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tbCreateGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:minHeight="?attr/actionBarSize" >
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/lstvSelectUserInGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="20dp"></ListView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên group:"
+        android:textSize="20dp"
+        android:id="@+id/textView"
+        android:textColor="#000000"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/tbCreateGroup"
+        android:layout_alignStart="@+id/textView1" />
+
+    <EditText
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtNameGroup"
+        android:textColor="#000000"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thành viên:"
+        android:textSize="20dp"
+        android:id="@+id/textView1"
+        android:textColor="#000000"
+        android:layout_below="@+id/edtNameGroup"
+        android:layout_marginTop="13dp" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAddUser"
+        android:src="@drawable/ic_add_black_24dp"
+        android:background="#00000000"
+        android:layout_marginEnd="10dp"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xóa Thành Viên"
+        android:layout_below="@+id/lstvSelectUserInGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:id="@+id/btnDeleteUser"/>
+
+</RelativeLayout>

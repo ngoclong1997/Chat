@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.androidproj.chat.AddUserForGroup"
+    android:background="@color/softblue">
+
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tbAddUserCreateGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2196F3"
+            android:minHeight="?attr/actionBarSize"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp">
+        </android.support.v7.widget.Toolbar>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="440dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp"
+            android:id="@+id/lstUserAdd"
+            android:layout_below="@+id/tbAddUserCreateGroup"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"></ListView>
+
+    </RelativeLayout>
+
