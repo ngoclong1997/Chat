@@ -96,7 +96,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void creatUser(UserInfo userInfo){
-        user = new User(userInfo.getUid(), etUsername.getText().toString(), etPassword.getText().toString(), null, null, null, null, etEmail.getText().toString(), true, true, null);
+        user = new User(userInfo.getUid(), etUsername.getText().toString(), etPassword.getText().toString(), "", "", "", "", etEmail.getText().toString(), true, true, "");
         mDatabase.child("Users").child(user.getUid()).setValue(user);
     }
 }

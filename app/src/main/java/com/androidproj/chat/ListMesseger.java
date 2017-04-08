@@ -169,8 +169,6 @@ public class ListMesseger extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     protected void timnameconversation(final String nhomchat) {

@@ -8,7 +8,17 @@
     <item
         android:id="@+id/btnEditUserInfo"
         android:title="Edit"
-        android:icon="@drawable/ic_create_black_24dp"
-        app:showAsAction = "always"></item>
-
+        app:showAsAction = "never"
+        android:icon="@drawable/ic_create_black_24dp"></item>
+    <item
+        android:id="@+id/btnLogout"
+        android:title="LogOut"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_logout">
+    </item>
+    <item
+        android:id="@+id/btnChangePassword"
+        android:title="Change Password"
+        app:showAsAction="never"
+        ></item>
 </menu>
