@@ -29,35 +29,35 @@ public class Main_Chat_Interface extends TabActivity{
 
         tabHost = getTabHost();
 
+        //tab for list messeger
         TabSpec chatSpec = tabHost.newTabSpec("Chat");
-        chatSpec.setIndicator("Chat", getResources().getDrawable(R.drawable.ic_add_black_24dp));
+        chatSpec.setIndicator("Chat");
         Intent chatIntent = new Intent(this, ListMesseger.class);
         chatIntent.putExtra("myuid", myUID);
         chatSpec.setContent(chatIntent);
 
-        // Tab for Songs
+        // Tab for list friends
         TabSpec friendSpec = tabHost.newTabSpec("Friends");
-        // setting Title and Icon for the Tab
-        friendSpec.setIndicator("Friends", getResources().getDrawable(R.drawable.ic_add_black_24dp));
+        friendSpec.setIndicator("Friends");
         Intent friendsIntent = new Intent(this, ListFriends.class);
         friendsIntent.putExtra("myuid", myUID);
         friendSpec.setContent(friendsIntent);
 
-        // Tab for Videos
+        // Tab for create group chat
         TabSpec groupSpec = tabHost.newTabSpec("Groups");
-        groupSpec.setIndicator("Groups", getResources().getDrawable(R.drawable.ic_add_black_24dp));
+        groupSpec.setIndicator("Groups");
         Intent groupsIntent = new Intent(this, CreateGroupChat.class);
         Bundle b = new Bundle();
         b.putString("myuid", myUID);
         b.putString("name", "");
         b.putString("key", "0000000000000000000000000000000000000000");
         b.putStringArrayList("select", new ArrayList<String>());
-        //Intent it = new Intent(ListMesseger.this, CreateGroupChat.class);
         groupsIntent.putExtra("cnn", b);
         groupSpec.setContent(groupsIntent);
 
+        //tab for edit my user
         TabSpec userSpec = tabHost.newTabSpec("User");
-        userSpec.setIndicator("User", getResources().getDrawable(R.drawable.ic_add_black_24dp));
+        userSpec.setIndicator("User");
         Intent userIntent = new Intent(this, EditUserInfo.class);
         userIntent.putExtra("myuid", myUID);
         userSpec.setContent(userIntent);
