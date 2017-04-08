@@ -51,52 +51,9 @@ public class ListFriends extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.ls);
 
-        /*btnConversation = (Button) findViewById(btnConversation);
-
-        btnGroupChat = (Button) findViewById(btnGroupChat);
-
-        btnMyUser = (Button) findViewById(btnMyUser);
-
-        btnUsers = (Button) findViewById(R.id.btnUsers);*/
-
         User = new AdapterFriends(ListFriends.this, R.layout.adapter_list_friend, lsNoteUser);
 
         listView.setAdapter(User);
-
-        /*btnConversation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(ListFriends.this, ListMesseger.class);
-                it.putExtra("myuid", myUid);
-                finish();
-                startActivity(it);
-            }
-        });
-
-
-        btnGroupChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle b = new Bundle();
-                b.putString("myuid", myUid);
-                b.putString("name", "");
-                b.putString("key", "0000000000000000000000000000000000000000");
-                b.putStringArrayList("select", new ArrayList<String>());
-                Intent it = new Intent(ListFriends.this, CreateGroupChat.class);
-                it.putExtra("cnn", b);
-                startActivity(it);
-            }
-        });
-
-        btnMyUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(ListFriends.this, EditUserInfo.class);
-                it.putExtra("myUid", myUid);
-                Log.i("ListMess: ", myUid);
-                startActivity(it);
-            }
-        });*/
 
     }
     @Override
@@ -135,7 +92,13 @@ public class ListFriends extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                if (myUid.equals(dataSnapshot.child("uid").getValue().toString())) {
 
+                } else {
+                    lsNoteUser.add(dataSnapshot.getValue(NoteUser.class));
+                    User.notifyDataSetChanged();
+
+                }
             }
 
             @Override

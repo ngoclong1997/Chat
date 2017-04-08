@@ -32,12 +32,13 @@ public class EditUserInfo extends AppCompatActivity {
     private DatabaseReference dbRef;
     EditText et_Username, et_Birthday, et_Firstname, et_LastName, et_Country;
     Button btnDone;
+    DatabaseReference data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_info);
-
+    data=FirebaseDatabase.getInstance().getReference();
         mappingView();
         btnDone.setVisibility(View.INVISIBLE);
         et_Birthday.setEnabled(false);
@@ -59,13 +60,11 @@ public class EditUserInfo extends AppCompatActivity {
         et_Firstname = (EditText) findViewById(R.id.et_EditFirstName);
         et_LastName = (EditText) findViewById(R.id.et_EditLastName);
         btnDone = (Button) findViewById(R.id.btnEditCompleted);
-        //btnLogOut = (Button) findViewById(R.id.btnLogOut);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
 
         myUid = getIntent().getStringExtra("myuid");
 
-        //Log.i("Uid to be edited: ", myUid);
 
         dbRef.child("Users").addChildEventListener(new ChildEventListener() {
             @Override
@@ -73,7 +72,6 @@ public class EditUserInfo extends AppCompatActivity {
                 user = dataSnapshot.getValue(User.class);
                 if (myUid.equals(user.getUid())){
                     fillInfo();
-                    //me = new User(user);
                 }
             }
 
@@ -191,6 +189,7 @@ public class EditUserInfo extends AppCompatActivity {
         prefEditor.putInt("isLogged", 0);
         prefEditor.commit();
         signOut();
+        data.child("Users").child(myUid).child("username").setValue(false);
         Intent intent = new Intent(EditUserInfo.this, Login.class);
         startActivity(intent);
     }

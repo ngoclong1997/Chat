@@ -76,57 +76,12 @@ public class ListMesseger extends AppCompatActivity {
 
         listView = (ListView) findViewById(ls);
 
-
-        /*btnConversation = (Button) findViewById(R.id.btnConversation);
-
-        btnGroupChat = (Button) findViewById(btnGroupChat);
-
-        btnMyUser = (Button) findViewById(btnMyUser);
-
-        btnUsers = (Button) findViewById(btnUsers);*/
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         Messeger = new AdapterMesseger(ListMesseger.this, R.layout.adapter_list_messeger, lsNoteConversation);
 
         listView.setAdapter(Messeger);
 
-        /*btnUsers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle b = new Bundle();
-                b.putString("uid", myUid);
-                Intent it = new Intent(ListMesseger.this, ListFriends.class);
-                databaseReference.goOffline();
-                it.putExtra("user", b);
-                finish();
-                startActivity(it);
-            }
-        });
-
-        btnGroupChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle b = new Bundle();
-                b.putString("myuid", myUid);
-                b.putString("name", "");
-                b.putString("key", "0000000000000000000000000000000000000000");
-                b.putStringArrayList("select", new ArrayList<String>());
-                Intent it = new Intent(ListMesseger.this, CreateGroupChat.class);
-                it.putExtra("cnn", b);
-                startActivity(it);
-            }
-        });
-
-        btnMyUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(ListMesseger.this, EditUserInfo.class);
-                it.putExtra("myUid", myUid);
-                Log.i("ListMess: ", myUid);
-                startActivity(it);
-            }
-        });*/
         registerForContextMenu(listView);
 
     }
@@ -138,7 +93,6 @@ public class ListMesseger extends AppCompatActivity {
 
     protected void timdsconversation()
     {
-       // Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         lsNoteConversation.clear();
         Messeger.notifyDataSetChanged();
         databaseReference.child("Users").child(myUid).child("listMesseger").addChildEventListener(new ChildEventListener() {

@@ -25,7 +25,7 @@ public class AdapterMesseger extends ArrayAdapter<NoteConversation> {
     private int layoutId;
     private ArrayList<NoteConversation> lsNotes = null;
      DatabaseReference databaseReference;
-    private TextView viewnamemessger,viewlastmessger;
+
 
     public AdapterMesseger(Activity context, int resource, ArrayList<NoteConversation> lsNotes) {
         super(context, resource, lsNotes);
@@ -40,15 +40,17 @@ public class AdapterMesseger extends ArrayAdapter<NoteConversation> {
         convertView = inflater.inflate(layoutId, null);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         if (lsNotes.size() > 0 && position >= 0) {
+            final   String name,lastmesseger;
+            final TextView viewnamemessger,viewlastmessger;
 
-            //lay cac control
            viewnamemessger = (TextView) convertView.findViewById(R.id.viewnamemesseger);
               viewlastmessger =(TextView) convertView.findViewById(R.id.viewlastmessger);
-            //lay duoc doi tuong note tai vi tri position
-            NoteConversation note = lsNotes.get(position);
-            viewnamemessger.setText(note.getNameConversation());
+          final   NoteConversation note = lsNotes.get(position);
+            name=note.getNameConversation();
+            lastmesseger=note.getConversationID();
+            viewnamemessger.setText(name);
 
-            databaseReference.child("Messeger").child(note.getConversationID()).child("lstMesseger").addChildEventListener(new ChildEventListener() {
+            databaseReference.child("Messeger").child(lastmesseger).child("lstMesseger").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                      viewlastmessger.setText(dataSnapshot.child("msg").getValue().toString());
