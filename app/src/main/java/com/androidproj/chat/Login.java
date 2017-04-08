@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.SharedPreferences;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,21 +25,26 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
     EditText etEmail, etPassword;
-    Button btnLogin;
+    Button btnLogin, btnReg;
     boolean isFirstLogin;
     String email, password;
     FirebaseAuth auth;
+    Toolbar toolbar;
+    CheckBox cbSavePassword;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("Đăng nhập");
 
         mappingView();
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email, password;
+
                 try{
                     email = etEmail.getText().toString();
                     password = etPassword.getText().toString();
@@ -47,15 +55,32 @@ public class Login extends AppCompatActivity {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Bundle b = new Bundle();
-                        b.putString("key", "Ys2Nbtz0eKadn9YcnKweFYwuemu2" + auth.getCurrentUser().getUid().toString());
-                        b.putString("uid", auth.getCurrentUser().getUid().toString());
-                        b.putString("chatWithName", "ngoclong_1997");
-                        Intent it = new Intent(Login.this, Chat.class);
-                        it.putExtra("user", b);
-                        startActivity(it);
+                        if(task.isSuccessful()){
+                            if (cbSavePassword.isChecked()){
+                                SharedPreferences sharedPref = getSharedPreferences("data",MODE_PRIVATE);
+                                SharedPreferences.Editor prefEditor = sharedPref.edit();
+                                prefEditor.putInt("isLogged", 1);
+                                prefEditor.putString("curUID", auth.getCurrentUser().getUid());
+                                prefEditor.commit();
+                            }
+                            Toast.makeText(Login.this, "Login Success!", Toast.LENGTH_SHORT).show();
+                            Intent it = new Intent(Login.this, Main_Chat_Interface.class);
+                            it.putExtra("myuid", auth.getCurrentUser().getUid());
+                            startActivity(it);
+                        }else{
+                            Exception ex = task.getException();
+
+                            Toast.makeText(Login.this, ex.toString(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+            }
+        });
+        btnReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
             }
         });
     }
@@ -65,6 +90,14 @@ public class Login extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.et_LoginEmail);
         etPassword = (EditText) findViewById(R.id.et_LoginPassword);
         btnLogin = (Button) findViewById(R.id.btn_Login);
+        btnReg = (Button) findViewById(R.id.btn_Reg);
+
+        cbSavePassword = (CheckBox) findViewById(R.id.cbSavePassword);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_Login);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
     }
 
     @Override
@@ -79,5 +112,15 @@ public class Login extends AppCompatActivity {
             etPassword.setText(password);
         }
 
+        // test chat group
+        // this will delete if list user and list convertion complete
+        if(resultCode == CreateGroupChat.CREATEGROUPCHAT){
+            Bundle b = data.getBundleExtra("group");
+            Intent it = new Intent(Login.this, Chat.class);
+            it.putExtra("user", b);
+            startActivity(it);
+        }
     }
+
+
 }

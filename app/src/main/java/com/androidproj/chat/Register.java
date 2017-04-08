@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,12 +35,13 @@ public class Register extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
     User user;
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setTitle("Đăng ký");
 
         mappingView();
 
@@ -86,6 +88,11 @@ public class Register extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.et_Email);
         etPassword = (EditText) findViewById(R.id.et_Password);
         btnRegister = (Button) findViewById(R.id.btn_Register);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_Register);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
     }
 
     private void creatUser(UserInfo userInfo){

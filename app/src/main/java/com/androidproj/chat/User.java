@@ -1,6 +1,7 @@
 package com.androidproj.chat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by NgocLong on 2/25/17.
@@ -8,12 +9,18 @@ import java.io.Serializable;
 
 public class User implements Serializable{
     private String uid, username, password, birthday, firstname, lastname, country, email, imgProfilePath;
+    private ArrayList<String> listMesseger;
     private boolean isFirstLogin, isActive;
 
     public User() {
     }
 
+    public  User(String uid, String email){
+        this.uid = uid;
+        this.email = email;
+    }
     public User(String uid, String username, String password, String birthday, String firstname, String lastname, String country, String email, boolean isFirstLogin, boolean isActive, String imgProfilePath) {
+        this.listMesseger = new ArrayList<>();
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -25,6 +32,29 @@ public class User implements Serializable{
         this.isFirstLogin = isFirstLogin;
         this.isActive = isActive;
         this.imgProfilePath = imgProfilePath;
+    }
+
+    public User(User user) {
+        this.listMesseger = user.getListMessege();
+        this.uid = user.getUid();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.birthday = user.getBirthday();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
+        this.country = user.getCountry();
+        this.email = user.getEmail();
+        this.isFirstLogin = user.isFirstLogin();
+        this.isActive = user.isActive();
+        this.imgProfilePath = user.getImgProfilePath();
+    }
+
+    public ArrayList<String> getListMessege() {
+        return listMesseger;
+    }
+
+    public void setListMessege(ArrayList<String> listMessege) {
+        this.listMesseger = listMessege;
     }
 
     public String getImgProfilePath() {
@@ -113,5 +143,10 @@ public class User implements Serializable{
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    @Override
+    public String toString() {
+        return this.username;
     }
 }

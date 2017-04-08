@@ -19,8 +19,24 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Login" />
-        <activity android:name=".GetInfo" />
-        <activity android:name=".Chat"></activity>
+        <activity
+            android:name=".Chat"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".CreateGroupChat"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".AddUserForGroup" />
+        <activity android:name=".ListFriends" />
+        <activity android:name=".ListMesseger" />
+        <activity
+            android:name=".InformationFriends"
+            android:parentActivityName=".ListFriends">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListFriends" />
+        </activity>
+        <activity android:name=".EditUserInfo"></activity>
+        <activity android:name=".Main_Chat_Interface"></activity>
     </application>
 
 </manifest>
