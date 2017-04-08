@@ -178,7 +178,7 @@ public class CreateGroupChat extends AppCompatActivity {
         edtNameGroup.setText(b.getString("name"));
         toolbar = (Toolbar) findViewById(R.id.tbCreateGroup);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         arrSelect = new ArrayList<>();
