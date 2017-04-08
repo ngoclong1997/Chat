@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by NgocLong on 2/25/17.
@@ -31,6 +33,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth auth;
     Toolbar toolbar;
     CheckBox cbSavePassword;
+    DatabaseReference data;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class Login extends AppCompatActivity {
                             }
                             Toast.makeText(Login.this, "Login Success!", Toast.LENGTH_SHORT).show();
                             Intent it = new Intent(Login.this, Main_Chat_Interface.class);
+                            data.child("Users").child(auth.getCurrentUser().getUid()).child("active").setValue(true);
                             it.putExtra("myuid", auth.getCurrentUser().getUid());
                             startActivity(it);
                         }else{
@@ -96,7 +100,7 @@ public class Login extends AppCompatActivity {
         btnReg = (Button) findViewById(R.id.btn_Reg);
 
         cbSavePassword = (CheckBox) findViewById(R.id.cbSavePassword);
-
+data= FirebaseDatabase.getInstance().getReference();
         toolbar = (Toolbar) findViewById(R.id.toolbar_Login);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

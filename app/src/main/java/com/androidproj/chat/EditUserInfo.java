@@ -189,7 +189,7 @@ public class EditUserInfo extends AppCompatActivity {
         prefEditor.putInt("isLogged", 0);
         prefEditor.commit();
         signOut();
-        data.child("Users").child(myUid).child("username").setValue(false);
+        data.child("Users").child(myUid).child("active").setValue(false);
         Intent intent = new Intent(EditUserInfo.this, Login.class);
         startActivity(intent);
     }

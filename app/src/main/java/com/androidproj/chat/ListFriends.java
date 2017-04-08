@@ -78,6 +78,7 @@ public class ListFriends extends AppCompatActivity {
     }
 
     protected void hiendsfriend() {
+
         databaseReference.child("Users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -92,13 +93,9 @@ public class ListFriends extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                if (myUid.equals(dataSnapshot.child("uid").getValue().toString())) {
 
-                } else {
-                    lsNoteUser.add(dataSnapshot.getValue(NoteUser.class));
-                    User.notifyDataSetChanged();
-
-                }
+                lsNoteUser.clear();
+                hiendsfriend();
             }
 
             @Override
