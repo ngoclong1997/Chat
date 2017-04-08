@@ -26,8 +26,6 @@ import java.util.ArrayList;
  */
 
 public class Chat extends AppCompatActivity {
-
-    private Conversation c;
     private Bundle b;
     private String myUid, key, myUserName;
     private ListView lst;

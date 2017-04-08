@@ -4,7 +4,6 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -14,7 +13,7 @@ import java.util.ArrayList;
  * Created by NgocLong on 4/8/17.
  */
 
-
+@SuppressWarnings("deprecation")
 public class Main_Chat_Interface extends TabActivity{
     TabHost tabHost;
     String myUID;
@@ -24,8 +23,6 @@ public class Main_Chat_Interface extends TabActivity{
         setContentView(R.layout.activity_main_chat_interface);
 
         myUID = getIntent().getStringExtra("myuid");
-
-        Log.i("Main_Chat", myUID);
 
         tabHost = getTabHost();
 

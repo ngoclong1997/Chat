@@ -19,6 +19,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+/**
+ * Created by NgocLong on 4/7/17.
+ */
+
 public class EditUserInfo extends AppCompatActivity {
     public static int LOG_OUT_CODE = 4;
     Toolbar toolbar;

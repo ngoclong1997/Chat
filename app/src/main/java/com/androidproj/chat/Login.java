@@ -56,11 +56,14 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            SharedPreferences sharedPref = getSharedPreferences("data",MODE_PRIVATE);
+                            SharedPreferences.Editor prefEditor = sharedPref.edit();
                             if (cbSavePassword.isChecked()){
-                                SharedPreferences sharedPref = getSharedPreferences("data",MODE_PRIVATE);
-                                SharedPreferences.Editor prefEditor = sharedPref.edit();
                                 prefEditor.putInt("isLogged", 1);
                                 prefEditor.putString("curUID", auth.getCurrentUser().getUid());
+                                prefEditor.commit();
+                            }else{
+                                prefEditor.putInt("isLogged", 0);
                                 prefEditor.commit();
                             }
                             Toast.makeText(Login.this, "Login Success!", Toast.LENGTH_SHORT).show();
@@ -121,6 +124,4 @@ public class Login extends AppCompatActivity {
             startActivity(it);
         }
     }
-
-
 }
