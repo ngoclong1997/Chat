@@ -85,13 +85,9 @@ public class Chat extends AppCompatActivity {
             setResult(CreateGroupChat.CREATEGROUPCHAT, data);
             finish();
         }
-        if(resultCode == 2){
+        if (resultCode == CreateGroupChat.NOTCREATEGROUPCHAT) {
             setTitle(data.getBundleExtra("con").getString("name"));
-            setResult(2, getIntent());
-        }
-        if (resultCode == 3){
-            setResult(3, data);
-            finish();
+            setResult(CreateGroupChat.NOTCREATEGROUPCHAT, getIntent());
         }
     }
 

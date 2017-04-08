@@ -302,13 +302,15 @@ public class ListMesseger extends AppCompatActivity {
         if (resultCode == LOAD_CONVERSATION_LIST) {
             timdsconversation();
         }
-        if(resultCode == 3){
+
+        if (resultCode == CreateGroupChat.CREATEGROUPCHAT) {
             timdsconversation();
             Bundle b = data.getBundleExtra("con");
             Intent it = new Intent(ListMesseger.this, Chat.class);
             it.putExtra("con", b);
             startActivityForResult(it, 1);
         }
+
     }
 
 }

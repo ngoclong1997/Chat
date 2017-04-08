@@ -35,7 +35,7 @@ public class CreateGroupChat extends AppCompatActivity {
     private DatabaseReference data;
     private String key, key1, myuid;
     private ImageButton btnAdd;
-    public static int CREATEGROUPCHAT = 1, NOTCREATEGROUPCHAT = 2;
+    public static int CREATEGROUPCHAT = 102, NOTCREATEGROUPCHAT = 103;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +107,9 @@ public class CreateGroupChat extends AppCompatActivity {
                 return true;
             case android.R.id.home:
                 if (key.equals("0000000000000000000000000000000000000000")) {
-                    Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
                     data.goOffline();
                     finish();
+                    return true;
                 } else if (edtNameGroup.length() == 0)
                     Toast.makeText(this, "Nhập Tên Group", Toast.LENGTH_SHORT).show();
                 else nonCreate();
@@ -132,8 +132,8 @@ public class CreateGroupChat extends AppCompatActivity {
         for (int i = 0; i < lstSelect.size(); ++i) {
             data.child("Users").child(lstSelect.get(i).toString()).child("listMesseger").child(key).setValue(key);
         }
+        setResult(NOTCREATEGROUPCHAT, it);
         data.goOffline();
-        setResult(3, it);
         finish();
     }
 
@@ -150,7 +150,7 @@ public class CreateGroupChat extends AppCompatActivity {
         bun.putString("myuid", getIntent().getBundleExtra("cnn").getString("myuid"));
         bun.putString("key", key1);
         it.putExtra("con", bun);
-        setResult(2, it);
+        setResult(CREATEGROUPCHAT, it);
         data.goOffline();
         finish();
     }
