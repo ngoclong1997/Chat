@@ -28,7 +28,6 @@ public class ListFriends extends AppCompatActivity {
     private ListView listView;
     private ArrayList<NoteUser> lsNoteUser = new ArrayList<>();
     private AdapterFriends User;
-    //private Button btnConversation, btnUsers, btnGroupChat, btnMyUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +48,9 @@ public class ListFriends extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        lsNoteUser = new ArrayList<>();
         listView = (ListView) findViewById(R.id.ls);
-
         User = new AdapterFriends(ListFriends.this, R.layout.adapter_list_friend, lsNoteUser);
-
         listView.setAdapter(User);
 
     }
@@ -78,7 +76,8 @@ public class ListFriends extends AppCompatActivity {
     }
 
     protected void hiendsfriend() {
-
+        lsNoteUser.clear();
+        User.notifyDataSetChanged();
         databaseReference.child("Users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -93,9 +92,6 @@ public class ListFriends extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                lsNoteUser.clear();
-                hiendsfriend();
             }
 
             @Override

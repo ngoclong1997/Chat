@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnRegister, btnLogin;
@@ -17,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mappingView();
-        //push();
+        // push();
 
         SharedPreferences sharedPref = getSharedPreferences("data",MODE_PRIVATE);
         int number = sharedPref.getInt("isLogged", 0);
@@ -54,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra("con", bundle);
 //        startActivityForResult(intent, 1);
 
+    }
+
+    private void push() {
+        DatabaseReference data = FirebaseDatabase.getInstance().getReference();
+        User x = new User("UCIX0A4Py6XCyF9lnicNAUkKITp1", "Hung", "111111", "", "", "", "VN", "", true, true, "");
+        User y = new User("i1xz26Gm31VUoBcBT0Wg0GW6O3A3", "Long", "", "", "", "", "VN", "", true, true, "");
+        User z = new User("kKlSpeaiGdMu94vXoFFTfksdRlV2", "Thai", "", "", "", "", "VN", "", true, true, "");
+        data.child("Users").child("UCIX0A4Py6XCyF9lnicNAUkKITp1").setValue(x);
+        data.child("Users").child("i1xz26Gm31VUoBcBT0Wg0GW6O3A3").setValue(y);
+        data.child("Users").child("kKlSpeaiGdMu94vXoFFTfksdRlV2").setValue(z);
     }
 
     protected void mappingView(){

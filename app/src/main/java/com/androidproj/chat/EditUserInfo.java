@@ -191,6 +191,7 @@ public class EditUserInfo extends AppCompatActivity {
         signOut();
         data.child("Users").child(myUid).child("active").setValue(false);
         Intent intent = new Intent(EditUserInfo.this, Login.class);
+        finish();
         startActivity(intent);
     }
 }

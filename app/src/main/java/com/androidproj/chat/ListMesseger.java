@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,10 +35,9 @@ public class ListMesseger extends AppCompatActivity {
     private ArrayList<NoteConversation> lsNoteConversation = new ArrayList<NoteConversation>();
     private ListView listView;
     private AdapterMesseger Messeger;
-    //private Button btnConversation, btnUsers, btnGroupChat, btnMyUser;
-    //private TabHost mTabHost;
     private int udpPosition = -1;
-
+    private boolean checkHas = false;
+    private ArrayList<String> arr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,47 +191,23 @@ public class ListMesseger extends AppCompatActivity {
        switch (item.getItemId()) {
 
             case R.id.action_delete: {
+                checkHas = false;
                 k = lsNoteConversation.get(udpPosition).getConversationID();
+                arr = new ArrayList<>();
                 databaseReference.child("Users").child(myUid).child("listMesseger").child(k).removeValue();
-                databaseReference.child("Messeger").child(k).child("user").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if (myUid.equals(dataSnapshot.getValue().toString())) {
-                            databaseReference.child("Messeger").child(lsNoteConversation.get(udpPosition).getConversationID()).child("user").child(dataSnapshot.getKey().toString()).removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
                 databaseReference.child("Messeger").child(k).child("user").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        try {
-                            if (dataSnapshot.getValue() == null) {
-                                databaseReference.child("Messeger").child(k).setValue(null);
-                                timdsconversation();
-                            }
-                        }catch (Exception e){
-                            Toast.makeText(ListMesseger.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        if (checkHas) return;
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            if (myUid.compareTo(data.getValue().toString()) != 0)
+                                arr.add(data.getValue().toString());
                         }
-
+                        if (arr.size() == 0)
+                            databaseReference.child("Messeger").child(k).removeValue();
+                        else
+                            databaseReference.child("Messeger").child(k).child("user").setValue(arr);
+                        checkHas = true;
                     }
 
                     @Override
@@ -241,7 +215,8 @@ public class ListMesseger extends AppCompatActivity {
 
                     }
                 });
-            return true;
+                timdsconversation();
+                return true;
             }
             default:
                 return super.onContextItemSelected(item);

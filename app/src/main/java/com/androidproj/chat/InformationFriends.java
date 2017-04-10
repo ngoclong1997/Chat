@@ -67,7 +67,6 @@ public class InformationFriends extends AppCompatActivity {
                 return true;
             case R.id.btnInboxWithFriend:
                 chatwith();
-                data.goOffline();
                 Bundle b = new Bundle();
                 b.putString("myuid", myuid);
                 b.putString("key", key);
@@ -86,16 +85,16 @@ public class InformationFriends extends AppCompatActivity {
     }
 
     private void chatwith() {
-        data.child("Messeger").child(key).child("user").addValueEventListener(new ValueEventListener() {
+        data.child("Messeger").child(key).child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() == null){
+                if (!dataSnapshot.exists()) {
                     data.child("Users").child(myuid).child("listMesseger").child(key).setValue(key);
                     data.child("Users").child(noteuser.getUid()).child("listMesseger").child(key).setValue(key);
-                    ArrayList<String> s = new ArrayList<>();
-                    s.add(myuid);
-                    s.add(noteuser.getUid());
-                    Conversation c = new Conversation(noteuser.getUsername(),key, s, null);
+                    ArrayList<String> arr = new ArrayList<>();
+                    arr.add(myuid);
+                    arr.add(noteuser.getUid());
+                    Conversation c = new Conversation(noteuser.getUsername(), key, arr, null);
                     data.child("Messeger").child(key).setValue(c);
                     data.goOffline();
                 }
@@ -106,6 +105,8 @@ public class InformationFriends extends AppCompatActivity {
 
             }
         });
+
+        data.goOffline();
 
     }
 

@@ -2,6 +2,7 @@ package com.androidproj.chat;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.SharedPreferences;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -100,7 +100,7 @@ public class Login extends AppCompatActivity {
         btnReg = (Button) findViewById(R.id.btn_Reg);
 
         cbSavePassword = (CheckBox) findViewById(R.id.cbSavePassword);
-data= FirebaseDatabase.getInstance().getReference();
+        data = FirebaseDatabase.getInstance().getReference();
         toolbar = (Toolbar) findViewById(R.id.toolbar_Login);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
