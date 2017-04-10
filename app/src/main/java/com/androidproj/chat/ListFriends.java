@@ -11,11 +11,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -76,32 +76,16 @@ public class ListFriends extends AppCompatActivity {
     }
 
     protected void hiendsfriend() {
-        lsNoteUser.clear();
-        User.notifyDataSetChanged();
-        databaseReference.child("Users").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("Users").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (myUid.equals(dataSnapshot.child("uid").getValue().toString())) {
-
-                } else {
-                    lsNoteUser.add(dataSnapshot.getValue(NoteUser.class));
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                lsNoteUser.clear();
+                User.notifyDataSetChanged();
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    if (myUid.compareTo(data.getValue(NoteUser.class).getUid()) != 0)
+                        lsNoteUser.add(data.getValue(NoteUser.class));
                     User.notifyDataSetChanged();
-
                 }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override

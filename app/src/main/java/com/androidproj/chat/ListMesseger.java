@@ -102,8 +102,6 @@ public class ListMesseger extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                String messId = dataSnapshot.getValue().toString();
-                timnameconversation(messId);
             }
 
             @Override
