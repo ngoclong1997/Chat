@@ -20,14 +20,14 @@ import java.util.ArrayList;
  * Created by Nguyen Ba Thai on 31/3/2017.
  */
 
-public class AdapterMesseger extends ArrayAdapter<NoteConversation> {
+public class AdapterListConversation extends ArrayAdapter<NoteConversation> {
     private Activity context = null;
     private int layoutId;
     private ArrayList<NoteConversation> lsNotes = null;
      DatabaseReference databaseReference;
 
 
-    public AdapterMesseger(Activity context, int resource, ArrayList<NoteConversation> lsNotes) {
+    public AdapterListConversation(Activity context, int resource, ArrayList<NoteConversation> lsNotes) {
         super(context, resource, lsNotes);
         this.context = context;
         this.layoutId = resource;

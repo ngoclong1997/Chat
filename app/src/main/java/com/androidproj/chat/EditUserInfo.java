@@ -38,7 +38,8 @@ public class EditUserInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_info);
-    data=FirebaseDatabase.getInstance().getReference();
+        data=FirebaseDatabase.getInstance().getReference();
+        setTitle("Thông tin bản thân");
         mappingView();
         btnDone.setVisibility(View.INVISIBLE);
         et_Birthday.setEnabled(false);
@@ -105,7 +106,7 @@ public class EditUserInfo extends AppCompatActivity {
                 String birthday = et_Birthday.getText().toString();
                 String country = et_Country.getText().toString();
                 DatabaseReference ref = dbRef.child("Users").child(myUid);
-                ref.child("firstnane").setValue(firstname);
+                ref.child("firstname").setValue(firstname);
                 ref.child("lastname").setValue(lastName);
                 ref.child("username").setValue(userName);
                 ref.child("birthday").setValue(birthday);

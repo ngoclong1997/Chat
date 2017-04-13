@@ -41,6 +41,7 @@ public class CreateGroupChat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group_chat);
+        setTitle("Quản lý nhóm");
         getFormWidgets();
         addEventFromWidgets();
     }
@@ -228,7 +229,6 @@ public class CreateGroupChat extends AppCompatActivity {
     }
 
     private boolean find(String uid) {
-
         for (int i = 0; i < lstSelect.size(); ++i)
             if (uid.compareTo(lstSelect.get(i).toString()) == 0) return true;
         return false;

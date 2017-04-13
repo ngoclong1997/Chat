@@ -99,7 +99,6 @@ public class ChangePassword extends Activity{
                 }
             }
         });
-
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +153,7 @@ public class ChangePassword extends Activity{
 
 
     }
+
     private void signOut() {
         // Firebase sign out
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -165,6 +165,6 @@ public class ChangePassword extends Activity{
         SharedPreferences.Editor prefEditor = sharedPref.edit();
         prefEditor.putInt("isLogged", 0);
         prefEditor.commit();
-        signOut();
+        //signOut();
     }
 }

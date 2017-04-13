@@ -48,7 +48,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text = "Birthday: "/>
+                android:text = "Ngày sinh: "/>
             <EditText
                 android:id="@+id/et_EditBirthday"
                 android:layout_width="0dp"
@@ -63,7 +63,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text = "First name: "/>
+                android:text = "Tên: "/>
             <EditText
 
                 android:id="@+id/et_EditFirstName"
@@ -79,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text = "Last name: "/>
+                android:text = "Họ đệm: "/>
             <EditText
 
                 android:id="@+id/et_EditLastName"
@@ -95,7 +95,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text = "Country: "/>
+                android:text = "Quốc gia: "/>
             <EditText
 
                 android:id="@+id/et_EditCountry"
@@ -116,16 +116,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text = "Done"/>
+                android:text = "Hoàn tất"/>
         </LinearLayout>
     </LinearLayout>
 
-    <!--<Button
-        android:id="@+id/btnLogOut"
-        android:layout_gravity=""
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "Đăng xuất"
-        />-->
 
 </LinearLayout>

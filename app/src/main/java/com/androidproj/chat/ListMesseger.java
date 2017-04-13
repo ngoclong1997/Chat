@@ -34,7 +34,7 @@ public class ListMesseger extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ArrayList<NoteConversation> lsNoteConversation = new ArrayList<NoteConversation>();
     private ListView listView;
-    private AdapterMesseger Messeger;
+    private AdapterListConversation Messeger;
     private int udpPosition = -1;
     private boolean checkHas = false;
     private ArrayList<String> arr;
@@ -42,7 +42,7 @@ public class ListMesseger extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messeger_and_friends);
-        setTitle("Messeger");
+        setTitle("Các cuộc hội thoại");
         loaddata();
         mappingview();
         timdsconversation();
@@ -76,7 +76,7 @@ public class ListMesseger extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        Messeger = new AdapterMesseger(ListMesseger.this, R.layout.adapter_list_messeger, lsNoteConversation);
+        Messeger = new AdapterListConversation(ListMesseger.this, R.layout.adapter_list_messeger, lsNoteConversation);
 
         listView.setAdapter(Messeger);
 

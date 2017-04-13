@@ -33,7 +33,7 @@ public class ListFriends extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messeger_and_friends);
-        setTitle("ListFriends");
+        setTitle("Danh sách bạn bè");
         mappingview();
         loaddata();
         hiendsfriend();

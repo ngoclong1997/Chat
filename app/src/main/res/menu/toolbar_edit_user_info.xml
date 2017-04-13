@@ -7,18 +7,18 @@
 
     <item
         android:id="@+id/btnEditUserInfo"
-        android:title="Edit"
+        android:title="Sửa thông tin"
         app:showAsAction = "never"
         android:icon="@drawable/ic_create_black_24dp"></item>
     <item
         android:id="@+id/btnLogout"
-        android:title="LogOut"
+        android:title="Đăng xuất"
         app:showAsAction="never"
         android:icon="@drawable/ic_logout">
     </item>
     <item
         android:id="@+id/btnChangePassword"
-        android:title="Change Password"
+        android:title="Đổi mật khẩu"
         app:showAsAction="never"
         ></item>
 </menu>
